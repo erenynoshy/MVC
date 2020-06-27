@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header
+{
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.html"><span>Shop</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active">
+                        <a href="@Url.Action("Index", "product")">Home</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("GetAll", "normalproduct")">Product</a>
+                    </li>
+                    <li class="dropdown show">
+
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Order
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a href="@Url.Action("index", "userorder")">Accepted orders</a>
+                            <a href="@Url.Action("rejected", "userorder")">Rejected orders</a>
+
+                        </div>
+
+                    </li>
+
+                    <li><a href="#portfolio">Porfile</a></li>
+                    <li><a href="#team">About</a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Login")">Login</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Register")">Sign Up</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Home")">Logout</a>
+
+                    </li>
+
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+}
+@section order{
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+                <div class="member-img">
+                    <img src='~/productimgs/@item.ImagePath' class="img-fluid" alt="">
+                    <div class="social">
+
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h4>@item.Title</h4>
+                    <span>@item.Price</span>
+                    <h1>accepted</h1>
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<shop.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@section orderimage{
+        @foreach (var item in Model)
+        {
+            <img src='~/productimgs/@item.ImagePath' class="img-fluid" alt="">
+        }
+    }*@
+@section header
+{
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.html"><span>Shop</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active">
+                        <a href="@Url.Action("Index", "product")">Home</a>
+                    </li>
+                    <li class="dropdown show">
+
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Products
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a href="@Url.Action("getcreatesection", "product")">Create Product</a>
+                            <a href="@Url.Action("GetAll", "product")">Edit Product</a>
+
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "order")">Order</a>
+                    </li>
+                    <li><a href="#portfolio">Porfile</a></li>
+                    <li><a href="#team">About</a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Login")">Login</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Register")">Sign Up</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Home")">Logout</a>
+
+                    </li>
+
+
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+}
+@section order{
+
+    <div class="section-title">
+        <h2 data-aos="fade-up">Orders</h2>
+        <p data-aos="fade-up">see all orders and  make your operation on it (accept || rejected) .</p>
+    </div>
+
+    <div class="row">
+
+
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                    <div class="member-img">
+                        <img src='~/productimgs/@item.ImagePath' class="img-fluid" alt="">
+                        <div class="social">
+                            <div class="d-block text-center">
+                                @Ajax.ActionLink("Accept", "Accept", new { id = item.ProductID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "abc", InsertionMode = InsertionMode.Replace, OnSuccess = "fun2()" }) |
+
+                                @Ajax.ActionLink("Reject", "Reject", new { id = item.ProductID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "Emps", InsertionMode = InsertionMode.Replace })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h4>@item.Title</h4>
+                        <span>@item.Price</span>
+                        <h1>@ViewBag.status</h1>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

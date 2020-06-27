@@ -1,0 +1,184 @@
+﻿@model IEnumerable<shop.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@section slider
+{
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center" 
+           style="background-image: url('~/Content/images/background.jpg')"
+             >
+    @*style="background-image: url(~/Content/images/background.jpg)"*@
+        <div class="container" data-aos="fade-in"  >
+            <h1>Welcome to Onlineshop</h1>
+            <h2>Wensite its main purpose to supply you with the cheapest products </h2>
+            <div class="d-flex align-items-center">
+                <i class="bx bxs-right-arrow-alt get-started-icon"></i>
+                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+  
+    <main id="main">
+
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-xl-4 col-lg-5" data-aos="fade-up">
+                        <div class="content">
+                            <h3>Why Choose Shop for your online shopping?</h3>
+                            <p>
+                                it provide the cheapest products ,with high quality .
+                                it provide the most entertainment way of shopping .
+                            </p>
+                            <div class="text-center">
+                                <a href="#" class="more-btn">Know More <i class="bx bx-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 d-flex">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-receipt"></i>
+                                        <h4>make order </h4>
+                                        <p>to add this product to your cart</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-cube-alt"></i>
+                                        <h4>search for product</h4>
+                                        <p>it get u all available products with that category </p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-images"></i>
+                                        <h4>know your product status</h4>
+                                        <p>section to see which products has been accepted and which not </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+}
+@section productimage
+       {
+    @foreach (var item in Model)
+    {
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+
+            <img src='~/productimgs/@item.ImagePath' alt="no image" width="350" height="250" />
+            <div class="d-block text-center">
+                @Ajax.ActionLink("Edit", "Edit", new { id = item.ProductID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "abc", InsertionMode = InsertionMode.Replace }) |
+
+                @Ajax.ActionLink("Delete", "Delete", new { id = item.ProductID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "Emps", InsertionMode = InsertionMode.Replace })
+
+            </div>
+            <div class="portfolio-info">
+
+                <h4>@item.Title</h4>
+                <p>@item.Price</p>
+                <a href="~/Content/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3">
+                    <i class="bx bx-plus">
+                        @*@Ajax.ActionLink("AddOrder", "AddOrder", new { id = item.ProductID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "Emps", InsertionMode = InsertionMode.Replace })*@
+
+                    </i>
+                </a>
+                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+        </div>
+
+
+
+    }
+}
+@section header
+{
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.html"><span>Shop</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active">
+                        <a href="@Url.Action("Index", "product")">Home</a>
+                    </li>
+                    <li class="dropdown show">
+
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Products
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a href="@Url.Action("getcreatesection", "product")">Create Product</a>
+                            <a href="@Url.Action("GetAll", "product")">Edit Product</a>
+
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "order")">Order</a>
+                    </li>
+                    <li><a href="#portfolio">Porfile</a></li>
+                    <li><a href="#team">About</a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Login")">Login</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Register")">Sign Up</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Home")">Logout</a>
+
+                    </li>
+
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+}
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editMode" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="abc">
+
+                @*@Html.Action("Edit")*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

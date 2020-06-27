@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "getCreatesection";
+}
+@section header
+{
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.html"><span>Shop</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active">
+                        <a href="@Url.Action("Index", "product")">Home</a>
+                    </li>
+                    <li class="dropdown show">
+
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Products
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a href="@Url.Action("getcreatesection", "product")">Create Product</a>
+                            <a href="@Url.Action("GetAll", "product")">Edit Product</a>
+
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "order")">Order</a>
+                    </li>
+                    <li><a href="#portfolio">Porfile</a></li>
+                    <li><a href="#team">About</a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Login")">Login</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Register")">Sign Up</a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Home")">Logout</a>
+
+                    </li>
+
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+}
+@section product
+{
+    <button type="button" class="btn btn-info btn-lg " style="height:70px;width:250px" data-toggle="modal" data-target="#createModal">Add Product</button>
+}
+
+<!-- create Modal -->
+<div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("Create")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
